@@ -1,0 +1,13 @@
+<policies>
+	<inbound>
+		<check-header name="X-Azure-FDID" failed-check-httpcode="401" failed-check-error-message="Not authorized" ignore-case="true">
+			<value>${frontdoor_id}</value>
+		</check-header>
+		<set-backend-service backend-id="${backend_name}" />
+	</inbound>
+	<backend>
+		<forward-request timeout="30"/>
+	</backend>
+	<outbound />
+	<on-error />
+</policies>
